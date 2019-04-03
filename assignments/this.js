@@ -14,13 +14,39 @@ console.log(this);
 // code example for Window Binding
 
 // Principle 2
+const me = {
+    name: 'Alex',
+    sayName: function(){
+        console.log(this.name)
+    }
+}
 
+me.sayName()
 // code example for Implicit Binding
 
 // Principle 3
+function Animal(animal, name) {
+    this.animal = animal,
+    this.name = name,
+    this.whatIsIt = function(){
+        console.log(`"this" in this context refers to a ${this.animal} named ${this.name}`)
+    }
+}
 
+let chicken = new Animal("chicken", "alex")
+let dog = new Animal("dog", "brutus")
+chicken.whatIsIt()
+dog.whatIsIt()
 // code example for New Binding
 
 // Principle 4
+const sayName = function(){
+     console.log(`my name is ${this.name}`);
+}
+const pm = {
+    name: "brandon"
+}
+
+sayName.call(pm)
 
 // code example for Explicit Binding
