@@ -23,14 +23,13 @@ const me = {
 
 me.sayName()
 // code example for Implicit Binding
-
 // Principle 3
-function Animal(animal, name) {
+function Animal(name, animal) {
     this.animal = animal,
     this.name = name,
-    this.whatIsIt = function(){
-        console.log(`"this" in this context refers to a ${this.animal} named ${this.name}`)
-    }
+    this.whatIsIt = function () {
+        console.log(`"this" in this context refers to a ${this.animal} named ${this.name}`);
+    };
 }
 
 let chicken = new Animal("chicken", "alex")
