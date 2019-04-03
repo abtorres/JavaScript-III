@@ -69,7 +69,7 @@ function Villain(obj){
 }
 Villain.prototype = new Humanoid(this)
 Villain.prototype.villainAttack = function(){
-  console.log('villains is attacking!');
+  console.log(`${this.name} is attacking!`);
   let attack =  Math.floor(Math.random() * 11);      // returns a random integer from 0 to 10 
   hero.healthPoints = hero.healthPoints - attack;
   if(attack > 0){
@@ -77,7 +77,7 @@ Villain.prototype.villainAttack = function(){
   }else{
     console.log(`${this.name} missed.`)
   };
-  console.log(`${hero.name} has ${hero.healthPoints}`)
+  console.log(`${hero.name} has ${hero.healthPoints} health points left.`)
   if(hero.healthPoints <= 0){
     fight = false;
     console.log(hero.destroy())
@@ -99,7 +99,7 @@ Hero.prototype.heroAttack = function(){
   }else{
     console.log(`${this.name} missed.`)
   };
-  console.log(`${villain.name} has ${villain.healthPoints}`)
+  console.log(`${villain.name} has ${villain.healthPoints} health points left.`)
   if(villain.healthPoints <= 0){
     fight = false;
     console.log(villain.destroy())
