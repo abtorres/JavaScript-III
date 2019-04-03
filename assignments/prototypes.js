@@ -62,6 +62,83 @@ Humanoid.prototype = new CharacterStats(this)
 Humanoid.prototype.greet = function(){
   return `${this.name} offers a greeting in ${this.language}`
 }
+
+//villain constructor
+function Villain(obj){
+  Humanoid.call(this, obj)
+}
+Villain.prototype = new Humanoid(this)
+Villain.prototype.villainAttack = function(){
+  console.log('villains is attacking!');
+  let attack =  Math.floor(Math.random() * 11);      // returns a random integer from 0 to 10 
+  hero.healthPoints = hero.healthPoints - attack;
+  if(attack > 0){
+    console.log(`${this.name} hit for ` + attack + ' damage points.')
+  }else{
+    console.log(`${this.name} missed.`)
+  };
+  console.log(`${hero.name} has ${hero.healthPoints}`)
+  if(hero.healthPoints <= 0){
+    fight = false;
+    console.log(`${this.name} has beaten ${hero.name}`)
+  }
+}
+
+
+//hero constructor
+function Hero(obj){
+  Humanoid.call(this, obj)
+}
+Hero.prototype = new Humanoid(this)
+Hero.prototype.heroAttack = function(){
+  console.log(`${this.name} is attacking!`);
+  let attack =  Math.floor(Math.random() * 11);      // returns a random integer from 0 to 10 
+  villain.healthPoints = villain.healthPoints - attack;
+  if(attack > 0){
+    console.log(`${this.name} hit for ` + attack + ' damage points.')
+  }else{
+    console.log(`${this.name} missed.`)
+  };
+  console.log(`${hero.name} has ${hero.healthPoints}`)
+  if(villain.healthPoints <= 0){
+    fight = false;
+    console.log(`${this.name} has beaten ${villain.name}`)
+  }
+}
+
+
+//villain and hero objects
+const hero = new Hero({
+  createdAt: new Date(),
+  dimensions: {
+    length: 2,
+    width: 1,
+    height: 1,
+  },
+  healthPoints: 500,
+  name: 'Goku',
+  team: 'DragonBallZ',
+  weapons: [
+    'Kamehameha',
+  ],
+  language: 'english',
+});
+
+const villain = new Villain({
+  createdAt: new Date(),
+  dimensions: {
+    length: 2,
+    width: 1,
+    height: 1,
+  },
+  healthPoints: 500,
+  name: 'Vegeta',
+  team: 'Frieza',
+  weapons: [
+    'Bitch Slap',
+  ],
+  language: 'english',
+});
  
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
@@ -122,17 +199,26 @@ Humanoid.prototype.greet = function(){
     language: 'Elvish',
   });
 
-  console.log(mage.createdAt); // Today's date
-  console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
-  console.log(swordsman.healthPoints); // 15
-  console.log(mage.name); // Bruce
-  console.log(swordsman.team); // The Round Table
-  console.log(mage.weapons); // Staff of Shamalama
-  console.log(archer.language); // Elvish
-  console.log(archer.greet()); // Lilith offers a greeting in Elvish.
-  console.log(mage.takeDamage()); // Bruce took damage. 
-  console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
-
+  // console.log(mage.createdAt); // Today's date
+  // console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
+  // console.log(swordsman.healthPoints); // 15
+  // console.log(mage.name); // Bruce
+  // console.log(swordsman.team); // The Round Table
+  // console.log(mage.weapons); // Staff of Shamalama
+  // console.log(archer.language); // Elvish
+  // console.log(archer.greet()); // Lilith offers a greeting in Elvish.
+  // console.log(mage.takeDamage()); // Bruce took damage. 
+  // console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
+  let fight = true;
+  while(fight){
+    if(villain.healthPoints > 0){
+      console.log(villain.villainAttack())
+    }
+    if(hero.healthPoints > 0){
+      console.log(hero.heroAttack())
+    }
+    
+  }
 
   // Stretch task: 
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
