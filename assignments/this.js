@@ -23,6 +23,7 @@ const me = {
 
 me.sayName()
 // code example for Implicit Binding
+
 // Principle 3
 function Animal(name, animal) {
     this.animal = animal,
