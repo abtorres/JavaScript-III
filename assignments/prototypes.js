@@ -80,7 +80,7 @@ Villain.prototype.villainAttack = function(){
   console.log(`${hero.name} has ${hero.healthPoints}`)
   if(hero.healthPoints <= 0){
     fight = false;
-    console.log(`${this.name} has beaten ${hero.name}`)
+    console.log(hero.destroy())
   }
 }
 
@@ -102,7 +102,7 @@ Hero.prototype.heroAttack = function(){
   console.log(`${hero.name} has ${hero.healthPoints}`)
   if(villain.healthPoints <= 0){
     fight = false;
-    console.log(`${this.name} has beaten ${villain.name}`)
+    console.log(villain.destroy())
   }
 }
 
